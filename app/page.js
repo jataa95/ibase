@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import HeroSlideshow from "@/components/HeroSlideshow";
 import ProductCard from "@/components/ProductCard";
 import Reveal from "@/components/Reveal";
 import Video from "@/components/Video";
@@ -13,19 +14,9 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="relative -mt-16 h-[calc(100svh-36px)] min-h-[560px] overflow-hidden bg-night">
-        <div className="absolute inset-0 grid md:grid-cols-3">
-          <div className="relative hidden md:block">
-            <Image src="/media/monochrome-track-set.jpg" alt="" fill priority sizes="33vw" className="object-cover" />
-          </div>
-          <div className="relative">
-            <Video src="/media/hero.mp4" poster="/media/hero-poster.jpg" className="absolute inset-0 h-full w-full object-cover" />
-          </div>
-          <div className="relative hidden md:block">
-            <Image src="/media/contour-track-set.jpg" alt="" fill priority sizes="33vw" className="object-cover" />
-          </div>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
-        <div className="absolute inset-x-0 bottom-0 flex flex-col items-start justify-between gap-6 px-4 pb-8 text-white md:flex-row md:items-end lg:px-[15px]">
+        <HeroSlideshow />
+        <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-b from-black/40 via-transparent to-black/70" />
+        <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-start justify-between gap-6 px-4 pb-14 text-white md:flex-row md:items-end lg:px-[15px]">
           <h1 className="font-serif text-[13vw] uppercase leading-[0.9] md:text-[7vw]">
             Made in
             <br />
