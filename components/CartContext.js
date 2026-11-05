@@ -34,7 +34,6 @@ export function CartProvider({ children }) {
           slug: product.slug,
           name: product.name,
           colour: product.colour,
-          price: product.price,
           image: product.images[0],
           size,
           quantity: 1,
@@ -52,11 +51,9 @@ export function CartProvider({ children }) {
 
   const value = useMemo(() => {
     const count = items.reduce((n, i) => n + i.quantity, 0);
-    const subtotal = items.reduce((n, i) => n + i.quantity * i.price, 0);
     return {
       items,
       count,
-      subtotal,
       isOpen,
       open: () => setIsOpen(true),
       close: () => setIsOpen(false),

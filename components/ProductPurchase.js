@@ -38,7 +38,7 @@ export default function ProductPurchase({ product }) {
       </p>
       <h1 className="font-serif text-4xl leading-tight md:text-5xl">{product.name}</h1>
       <p className="mt-1 text-[15px] text-ink/60">{product.colour}</p>
-      <p className="mt-4 text-[17px]">{formatPrice(product.price)}</p>
+      <p className="mt-4 text-[17px]">{formatPrice()}</p>
 
       <div className="mt-8">
         <div className="mb-2 flex justify-between text-[13px]">

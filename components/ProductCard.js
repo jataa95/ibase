@@ -57,7 +57,7 @@ export default function ProductCard({ product, priority = false }) {
           {product.name}
         </Link>
         <p className="text-ink/60">{product.colour}</p>
-        <p className="text-ink/80">{formatPrice(product.price)}</p>
+        <p className="text-ink/80">{formatPrice()}</p>
       </div>
     </article>
   );

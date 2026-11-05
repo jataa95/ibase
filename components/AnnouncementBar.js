@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { formatPrice, site } from "@/lib/site";
 
 const messages = [
-  { text: `Free delivery within Nigeria on orders above ${formatPrice(site.freeDeliveryThreshold)}` },
+  { text: "Delivery nationwide across Nigeria" },
   { text: "Stories, people and places.", link: { href: "/journal", label: "Read the journal" } },
   { text: "Tracksuits, sets & separates.", link: { href: "/shop", label: "Shop the collection" } },
 ];

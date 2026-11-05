@@ -6,14 +6,14 @@ import { useEffect } from "react";
 import { useCart } from "./CartContext";
 import { formatPrice, site } from "@/lib/site";
 
-function whatsappLink(items, subtotal) {
-  const lines = items.map((i) => `• ${i.name} (${i.colour}) — size ${i.size} × ${i.quantity} — ${formatPrice(i.price * i.quantity)}`);
-  const text = ["Hi IBASE, I'd like to order:", ...lines, `Subtotal: ${formatPrice(subtotal)}`].join("\n");
+function whatsappLink(items) {
+  const lines = items.map((i) => `• ${i.name} (${i.colour}) — size ${i.size} × ${i.quantity}`);
+  const text = ["Hi IBASE, I'd like to order:", ...lines].join("\n");
   return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(text)}`;
 }
 
 export default function CartDrawer() {
-  const { items, count, subtotal, isOpen, close, updateQuantity } = useCart();
+  const { items, count, isOpen, close, updateQuantity } = useCart();
 
   useEffect(() => {
     if (!isOpen) return;
@@ -21,8 +21,6 @@ export default function CartDrawer() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [isOpen, close]);
-
-  const remaining = site.freeDeliveryThreshold - subtotal;
 
   return (
     <div className={`fixed inset-0 z-[60] ${isOpen ? "" : "pointer-events-none"}`} aria-hidden={!isOpen}>
@@ -53,11 +51,6 @@ export default function CartDrawer() {
           </div>
         ) : (
           <>
-            <p className="border-b border-black/10 px-5 py-3 text-[13px] text-ink/70">
-              {remaining > 0
-                ? `You're ${formatPrice(remaining)} away from free delivery.`
-                : "You've unlocked free delivery."}
-            </p>
             <ul className="flex-1 divide-y divide-black/10 overflow-y-auto px-5">
               {items.map((item) => (
                 <li key={item.key} className="flex gap-4 py-5">
@@ -67,7 +60,7 @@ export default function CartDrawer() {
                   <div className="flex flex-1 flex-col text-[14px]">
                     <div className="flex justify-between gap-2">
                       <Link href={`/shop/${item.slug}`} onClick={close}>{item.name}</Link>
-                      <span>{formatPrice(item.price * item.quantity)}</span>
+                      <span>{formatPrice()}</span>
                     </div>
                     <p className="text-ink/60">{item.colour} · {item.size}</p>
                     <div className="mt-auto flex items-center justify-between">
@@ -90,11 +83,11 @@ export default function CartDrawer() {
         <div className="border-t border-black/10 px-5 py-5">
           <div className="mb-4 flex justify-between text-[15px]">
             <span>Subtotal</span>
-            <span>{formatPrice(subtotal)}</span>
+            <span>{formatPrice()}</span>
           </div>
           {site.whatsappNumber ? (
             <a
-              href={items.length ? whatsappLink(items, subtotal) : undefined}
+              href={items.length ? whatsappLink(items) : undefined}
               target="_blank"
               rel="noreferrer"
               className={`block w-full bg-ink py-4 text-center text-[14px] uppercase tracking-wider text-paper ${items.length ? "hover:bg-black" : "pointer-events-none opacity-40"}`}
