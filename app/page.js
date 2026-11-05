@@ -18,7 +18,7 @@ export default function Home() {
             <Image src="/media/monochrome-track-set.jpg" alt="" fill priority sizes="33vw" className="object-cover" />
           </div>
           <div className="relative">
-            <Video src="/media/lookbook-01.mp4" poster="/media/lookbook-01-poster.jpg" className="absolute inset-0 h-full w-full object-cover" />
+            <Video src="/media/hero.mp4" poster="/media/hero-poster.jpg" className="absolute inset-0 h-full w-full object-cover" />
           </div>
           <div className="relative hidden md:block">
             <Image src="/media/contour-track-set.jpg" alt="" fill priority sizes="33vw" className="object-cover" />
